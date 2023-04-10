@@ -26,6 +26,12 @@ class Livres
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $editeur = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateEdition = null;
+
 
 
     public function getId(): ?int
@@ -77,6 +83,30 @@ class Livres
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getEditeur(): ?string
+    {
+        return $this->editeur;
+    }
+
+    public function setEditeur(string $editeur): self
+    {
+        $this->editeur = $editeur;
+
+        return $this;
+    }
+
+    public function getDateEdition(): ?\DateTimeInterface
+    {
+        return $this->dateEdition;
+    }
+
+    public function setDateEdition(\DateTimeInterface $dateEdition): self
+    {
+        $this->dateEdition = $dateEdition;
 
         return $this;
     }
