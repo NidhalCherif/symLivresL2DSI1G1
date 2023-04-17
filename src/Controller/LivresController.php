@@ -12,12 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class LivresController extends AbstractController
 {
     #[Route('/admin/livres', name: 'app_livres')]
-    public function index(LivresRepository $rep): Response
+    public function findAll(LivresRepository $rep): Response
     { $livres= $rep->findAll();
-       dd($livres);
+       //dd($livres);
+        return $this->render('Livres/findAll.html.twig',['livres'=>$livres]);
     }
     #[Route('/admin/livres/find/{id}', name: 'app_livres_find_id')]
-    public function chercher(Livres $livre): Response
+    public function find(Livres $livre): Response
     {   dd($livre);
     }
 
@@ -37,7 +38,7 @@ class LivresController extends AbstractController
         dd($livre);
 
     }
-    #[Route('/admin/livres/update/{id}', name: 'app_livres_find_id')]
+    #[Route('/admin/livres/update/{id}', name: 'app_livres_update_id')]
     public function update_price(Livres $livre,ManagerRegistry $doctrine): Response
     {
 
@@ -46,7 +47,7 @@ class LivresController extends AbstractController
         $em->flush();
         dd($livre);
     }
-    #[Route('/admin/livres/delete/{id}', name: 'app_livres_find_id')]
+    #[Route('/admin/livres/delete/{id}', name: 'app_livres_delete_id')]
     public function delete(Livres $livre,ManagerRegistry $doctrine): Response
     {
 
