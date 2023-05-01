@@ -32,6 +32,9 @@ class Livres
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateEdition = null;
 
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Categories $categorie = null;
+
 
 
     public function getId(): ?int
@@ -107,6 +110,18 @@ class Livres
     public function setDateEdition(\DateTimeInterface $dateEdition): self
     {
         $this->dateEdition = $dateEdition;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categories $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
