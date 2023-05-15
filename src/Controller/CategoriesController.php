@@ -15,6 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoriesController extends AbstractController
 {
+
+
+
     #[Route('admin/categories/add', name: 'categories_add')]
     public function add(Request $request,ManagerRegistry $doctrine): Response
     {

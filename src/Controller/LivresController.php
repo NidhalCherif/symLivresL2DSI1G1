@@ -38,6 +38,7 @@ class LivresController extends AbstractController
         if($form->isSubmitted()&& $form->isValid())
         {
             $livre=$form->getData();
+            $livre->setPrix(0);
             $em = $doctrine->getManager();
             $em->persist($livre);
             $em->flush();

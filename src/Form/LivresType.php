@@ -18,7 +18,7 @@ class LivresType extends AbstractType
         $builder
             ->add('libelle')
             ->add('resume')
-            ->add('prix')
+            //->add('prix')
             ->add('image') // transformez le champs image de type text au type file
             ->add('editeur',ChoiceType::class,['label'=>'Editeur','choices'=>['Eni'=>'Eni', 'Dunod'=>'Dunod','verone'=>'verone']])
             ->add('dateEdition')
