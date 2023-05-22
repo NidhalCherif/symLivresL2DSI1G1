@@ -11,10 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class LivresController extends AbstractController
 {
     #[Route('/admin/livres', name: 'app_livres')]
+    #[IsGranted("ROLE_ADMIN")]
     public function findAll(LivresRepository $rep,Request $request,PaginatorInterface $paginator): Response
     { $livres= $rep->findAll();
         $pagination = $paginator->paginate(
@@ -26,11 +28,13 @@ class LivresController extends AbstractController
         return $this->render('Livres/findAll.html.twig',['livres'=>$pagination]);
     }
     #[Route('/admin/livres/find/{id}', name: 'app_livres_find_id')]
+    #[IsGranted("ROLE_ADMIN")]
     public function find(Livres $livre): Response
     {   dd($livre);
     }
 
     #[Route('/admin/livres/add', name: 'app_livres_add')]
+    #[IsGranted("ROLE_ADMIN")]
     public function add(ManagerRegistry $doctrine,Request $request): Response
     { $livre=new Livres();
         $form=$this->createForm(LivresType::class,$livre);
@@ -50,6 +54,7 @@ class LivresController extends AbstractController
 
     }
     #[Route('/admin/livres/update/{id}', name: 'app_livres_update_id')]
+    #[IsGranted("ROLE_ADMIN")]
     public function update_price(Livres $livre,ManagerRegistry $doctrine): Response
     {
 
